@@ -1,9 +1,22 @@
 import React from "react";
+import { useEffect } from "react";
 import "./Home.css";
 import Product from "./Product";
+import { auth } from "./firebase";
+import { useStateValue } from "./StateProvider";
+import { useNavigate } from "react-router-dom";
 
 function Home() {
+
+    const navigate = useNavigate()
+    const [{user}, dispatch] = useStateValue()
+    if(!user){
+        navigate("/login")
+    }
+
+    
   return (
+
     <div className="home">
       <div className="home__container">
         <img
